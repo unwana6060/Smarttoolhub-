@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LogIn, LogOut, User as UserIcon } from 'lucide-react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
-import { auth, signInWithGoogle } from '../lib/firebase';
+import { auth } from '../lib/firebase';
+import AuthModal from './AuthModal';
 
 export default function UserMenu() {
   const { t } = useTranslation();
   const [user, setUser] = React.useState<User | null>(null);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
@@ -15,32 +17,21 @@ export default function UserMenu() {
     return () => unsubscribe();
   }, []);
 
-  const handleLogin = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (error: any) {
-      if (error.code === 'auth/popup-closed-by-user') {
-        // Silently handle user closing the popup
-        return;
-      }
-      if (error.code === 'auth/unauthorized-domain') {
-        alert(t('auth.unauthorized'));
-      }
-      console.error('Login error:', error);
-    }
-  };
-
   const handleLogout = () => auth.signOut();
 
   if (!user) {
     return (
-      <button
-        onClick={handleLogin}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#3B82F6] hover:bg-blue-600 transition-colors text-white text-sm font-medium cursor-pointer"
-      >
-        <LogIn size={16} />
-        <span className="hidden sm:inline">{t('auth.sign_in')}</span>
-      </button>
+      <>
+        <button
+          onClick={() => setIsAuthOpen(true)}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#3B82F6] hover:bg-blue-600 transition-colors text-white text-sm font-medium cursor-pointer"
+        >
+          <LogIn size={16} />
+          <span className="hidden sm:inline">{t('auth.sign_in')}</span>
+        </button>
+
+        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+      </>
     );
   }
 
