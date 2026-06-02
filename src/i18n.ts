@@ -8,6 +8,12 @@ const resources = {
       back_home: "Back to Home",
       home_title: "All-in-One Utility Suite",
       home_subtitle: "Free, professional tools for documents, images, and calculations. No setup required.",
+      footer: {
+        about: "About & How to Use",
+        contact: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms & Disclaimer"
+      },
       auth: {
         title: "Sign in to save your history",
         subtitle: "Secure your tool usage data across devices.",
@@ -230,6 +236,12 @@ const resources = {
       back_home: "Retour à l'accueil",
       home_title: "Suite utilitaire tout-en-un",
       home_subtitle: "Outils professionnels gratuits pour documents, images et calculs.",
+      footer: {
+        about: "À propos et utilisation",
+        contact: "Contactez-nous",
+        privacy: "Politique de confidentialité",
+        terms: "Conditions et Avis de non-responsabilité"
+      },
       auth: {
         title: "Connectez-vous pour sauvegarder votre historique",
         subtitle: "Sécurisez vos données sur tous vos appareils.",
@@ -384,6 +396,12 @@ const resources = {
       back_home: "Volver al inicio",
       home_title: "Suite de utilidades todo en uno",
       home_subtitle: "Herramientas profesionales para documentos, imágenes y cálculos.",
+      footer: {
+        about: "Acerca de y Cómo usar",
+        contact: "Contacto",
+        privacy: "Política de privacidad",
+        terms: "Términos y descargo de responsabilidad"
+      },
       auth: {
         title: "Inicia sesión para guardar historial",
         subtitle: "Asegura tus datos en todos tus dispositivos.",

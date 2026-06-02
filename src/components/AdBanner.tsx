@@ -1,10 +1,32 @@
-import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
 
 export default function AdBanner() {
-  const { t } = useTranslation();
+  useEffect(() => {
+    try {
+      // Trigger Google AdSense to push and render the ad inside this unit
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error('AdSense error on initialization:', e);
+    }
+  }, []);
+
   return (
-    <div className="w-full max-w-[728px] h-[50px] sm:h-[90px] bg-[#1A1A1A] border border-dashed border-white/10 rounded-xl flex items-center justify-center text-[9px] sm:text-[10px] text-[#666] uppercase tracking-[2px] mx-auto transition-all">
-      {t('ads.banner.text')}
+    <div className="w-full max-w-[728px] mx-auto my-4 overflow-hidden flex justify-center">
+      {/* HTML Ad Unit */}
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block', width: '100%' }}
+        data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+        data-ad-slot="YOUR_AD_SLOT_ID"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 }

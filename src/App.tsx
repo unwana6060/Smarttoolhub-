@@ -12,6 +12,10 @@ import PasswordGenerator from './pages/PasswordGenerator';
 import JsonFormatter from './pages/JsonFormatter';
 import AgeCalculator from './pages/AgeCalculator';
 import BmiCalculator from './pages/BmiCalculator';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsDisclaimer from './pages/TermsDisclaimer';
 import AdInterstitial from './components/AdInterstitial';
 
 // Mock interstitial manager
@@ -52,6 +56,10 @@ export default function App() {
             <Route path="json-formatter" element={<JsonFormatter />} />
             <Route path="age-calculator" element={<AgeCalculator />} />
             <Route path="bmi-calculator" element={<BmiCalculator />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="terms-disclaimer" element={<TermsDisclaimer />} />
           </Route>
         </Routes>
       </RouteHandler>
