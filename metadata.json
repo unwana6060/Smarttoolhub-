@@ -2,5 +2,7 @@
   "name": "SmartTools Hub",
   "description": "A multi-tool utility platform featuring PDF manipulation, EMI calculator, image compression, word counting, and currency conversion.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

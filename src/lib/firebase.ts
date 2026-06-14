@@ -61,8 +61,14 @@ async function testConnection() {
   try {
     await getDocFromServer(doc(db, 'test', 'connection'));
   } catch (error) {
-    if(error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration.");
+    if (error instanceof Error && error.message.includes('the client is offline')) {
+      // Check if we are actually online first. In some headless run/test environments,
+      // internet is disabled, so we shouldn't throw a fatal configuration error.
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        console.log("Firebase is operating in offline cache mode. It will synchronize automatically once network connectivity is restored.");
+      } else {
+        console.warn("Please check your Firebase configuration.");
+      }
     }
   }
 }
